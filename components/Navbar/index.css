@@ -1,0 +1,41 @@
+.for-button {
+  outline: none;
+  background-color: transparent;
+  border-width: 0;
+}
+.for-light-color {
+  color: #ffffff;
+}
+
+.for-dark-color {
+  color: #000000;
+}
+.for-navbar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.for-nav-background-light {
+  background-color: #ffffff;
+}
+
+.for-nav-background-light {
+  background-color: #333333;
+}
+.small-image {
+  height: 50px;
+  width: 50px;
+}
+.for-dark-color {
+  color: #000000;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.for-light-color {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
