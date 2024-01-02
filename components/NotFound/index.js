@@ -1,33 +1,45 @@
 import Navbar from '../Navbar'
-import './index.css'
+
 import ThemeContext from '../../context/ThemeContext'
+
+import './index.css'
 
 const NotFound = () => (
   <ThemeContext.Consumer>
     {value => {
       const {isDarkTheme} = value
+
+      const notFoundBgClassName = isDarkTheme
+        ? 'not-found-bg-dark'
+        : 'not-found-bg-light'
+
+      const notFoundHeadingTextClassName = isDarkTheme
+        ? 'not-found-heading-text-light'
+        : 'not-found-heading-text-dark'
+
+      const notFoundContentTextClassName = isDarkTheme
+        ? 'not-found-content-text-light'
+        : 'not-found-content-text-dark'
+
       return (
-        <div>
+        <div className={`not-found-app-container ${notFoundBgClassName}`}>
           <Navbar />
-          <div
-            className={
-              isDarkTheme ? 'for-content back-dark' : 'for-content back-light'
-            }
-          >
-            <div className="for-content">
+          <div className="not-found-responsive-container">
+            <div className="not-found-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/not-found-img.png"
-                alt="about"
-                className="content-image"
+                alt="not found"
+                className="not-found-img"
               />
-
               <h1
-                className={isDarkTheme ? 'for-dark-theme' : 'for-light-theme'}
+                className={`not-found-heading ${notFoundHeadingTextClassName}`}
               >
                 Lost Your Way?
               </h1>
-              <p className={isDarkTheme ? 'for-dark-theme' : 'for-light-theme'}>
-                We cannot seem to find the page you are looking for
+              <p
+                className={`not-found-content ${notFoundContentTextClassName}`}
+              >
+                We cannot seem to find the page you are looking for.
               </p>
             </div>
           </div>
@@ -36,4 +48,5 @@ const NotFound = () => (
     }}
   </ThemeContext.Consumer>
 )
+
 export default NotFound

@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom'
+
 import ThemeContext from '../../context/ThemeContext'
+
 import './index.css'
 
 const Navbar = () => (
@@ -7,74 +9,53 @@ const Navbar = () => (
     {value => {
       const {isDarkTheme, toggleTheme} = value
 
-      const onChangeTheme = () => {
+      const onToggleTheme = () => {
         toggleTheme()
       }
 
+      const themeImageURL = isDarkTheme
+        ? 'https://assets.ccbp.in/frontend/react-js/light-theme-img.png'
+        : 'https://assets.ccbp.in/frontend/react-js/dark-theme-img.png'
+
+      const navbarBgClassName = isDarkTheme
+        ? 'navbar-bg-dark'
+        : 'navbar-bg-light'
+
+      const websiteLogoImageURL = isDarkTheme
+        ? 'https://assets.ccbp.in/frontend/react-js/website-logo-dark-theme-img.png'
+        : 'https://assets.ccbp.in/frontend/react-js/website-logo-light-theme-img.png'
+
+      const navItemClassName = isDarkTheme
+        ? 'list-text-dark-theme'
+        : 'list-text-light-theme'
+
       return (
-        <div
-          className={
-            !isDarkTheme
-              ? 'for-nav-background-light for-navbar-container'
-              : 'for-nav-background-dark for-navbar-container'
-          }
-        >
-          <div>
-            {!isDarkTheme && (
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/website-logo-dark-theme-img.png"
-                alt="website logo"
-                className="small-image"
-              />
-            )}
-            {isDarkTheme && (
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/website-logo-light-theme-img.png"
-                alt="website logo"
-                className="small-image"
-              />
-            )}
-          </div>
-          <div>
-            <ul>
-              <li>
-                <Link
-                  className={isDarkTheme ? 'for-dark-color' : 'for-light-color'}
-                  to="/"
-                >
+        <div className={`navbar ${navbarBgClassName}`}>
+          <div className="navbar-content">
+            <img
+              className="website-logo"
+              src={websiteLogoImageURL}
+              alt="website logo"
+            />
+            <ul className="nav-menu">
+              <li className="nav-menu-item">
+                <Link to="/" className={`nav-link ${navItemClassName}`}>
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  className={isDarkTheme ? 'for-dark-color' : 'for-light-color'}
-                  to="/about"
-                >
+              <li className="nav-menu-item">
+                <Link to="/about" className={`nav-link ${navItemClassName}`}>
                   About
                 </Link>
               </li>
             </ul>
-          </div>
-          <div>
             <button
-              onClick={onChangeTheme}
+              data-testid="theme"
+              className="theme-button"
               type="button"
-              className="for-button"
+              onClick={onToggleTheme}
             >
-              {isDarkTheme && (
-                <img
-                  src="https://assets.ccbp.in/frontend/react-js/dark-theme-img.png"
-                  alt="theme"
-                  className="small-image"
-                />
-              )}
-              {!isDarkTheme && (
-                <img
-                  src="https://assets.ccbp.in/frontend/react-js/light-theme-img.png"
-                  alt="theme"
-                  className="small-image"
-                />
-              )}
+              <img className="theme-image" src={themeImageURL} alt="theme" />
             </button>
           </div>
         </div>
@@ -82,4 +63,5 @@ const Navbar = () => (
     }}
   </ThemeContext.Consumer>
 )
+
 export default Navbar
